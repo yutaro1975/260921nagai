@@ -94,8 +94,20 @@ button, textarea { font-family: inherit; }
 .dot.unknown { background: var(--gray); }
 
 /* ---------- 問題表示 ---------- */
-.case-progress { margin: 0; font-size: 0.9rem; color: #6b7280; }
-.case-title { margin: 2px 0 8px; font-size: 1.35rem; font-weight: 700; }
+/* ケース番号と場所：大きな帯で表示する */
+.case-progress {
+  display: inline-block;
+  margin: 0 0 6px;
+  padding: 4px 18px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+/* ケースのタイトル：大きな文字で表示する */
+.case-title { margin: 4px 0 12px; font-size: 2rem; font-weight: 700; line-height: 1.4; }
 .story { padding: 10px 14px; border-left: 5px solid var(--line); background: #f8f9fa; border-radius: 0 10px 10px 0; }
 .story p { margin: 4px 0; }
 .note { margin: 4px 0 8px; font-size: 0.9rem; color: #6b7280; }
@@ -166,6 +178,8 @@ button:focus-visible, textarea:focus-visible { outline: 3px solid #3b82f6; outli
 .char-count { margin: 4px 0 8px; font-size: 0.9rem; color: #6b7280; }
 .model-box { margin: 16px 0; padding: 12px 16px; border: 2px solid var(--green); border-radius: 12px; background: var(--green-bg); }
 .model-box p { margin: 4px 0; }
+
+.restart { margin: 12px 0 24px; }
 
 /* ---------- スマホ・縦画面：上下に並べる ---------- */
 @media (max-width: 820px) {

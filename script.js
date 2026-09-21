@@ -590,7 +590,6 @@ function showResult() {
   ta.value = '';
   ta.disabled = false;
   $('model-box').hidden = true;
-  $('restart-btn').hidden = true;
   $('submit-btn').hidden = false;
   updateCharCount();
 
@@ -615,7 +614,6 @@ function onSubmit() {
   box.textContent = '';
   MODEL_REFLECTION.forEach(function (line) { box.appendChild(el('p', '', line)); });
   $('model-box').hidden = false;
-  $('restart-btn').hidden = false;
 }
 
 // 「もう一度挑戦する」
