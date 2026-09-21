@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ネットワークトラブル診断ゲーム</title>
+
+  <!-- 丸ゴシック体「Zen Maru Gothic」（オンラインのときだけ読み込まれる）。
+       オフラインのときは style.css に書いた、端末に入っている丸ゴシック系フォントで表示される。
+       不要なら、次の3行を消してもアプリは動く。 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== ヘッダー ===== -->
+  <header class="app-header">
+    <h1>ネットワークトラブル診断ゲーム</h1>
+  </header>
+
+  <!-- ===== メイン：左右2分割 ===== -->
+  <main class="layout">
+
+    <!-- 左エリア：ネットワーク図（SVGはscript.jsが生成する） -->
+    <section class="pane pane-left" aria-label="ネットワーク図">
+      <h2 id="diagram-title" class="pane-title">ネットワーク図</h2>
+      <div id="diagram-wrap"></div>
+      <ul class="legend">
+        <li><span class="dot ok"></span>正常</li>
+        <li><span class="dot ng"></span>故障・通信できない</li>
+        <li><span class="dot unknown"></span>未確認</li>
+      </ul>
+    </section>
+
+    <!-- 右エリア：問題画面と結果画面を切り替えて表示 -->
+    <section class="pane pane-right">
+
+      <!-- ▼ 問題画面 -->
+      <div id="view-game">
+        <p id="case-progress" class="case-progress"></p>
+        <h2 id="case-title" class="case-title"></h2>
+        <div id="story" class="story"></div>
+
+        <h3 class="sub-title">観察結果（○＝通信できる　×＝通信できない）</h3>
+        <table class="obs-table">
+          <tbody id="obs-body"></tbody>
+        </table>
+
+        <!-- 判定結果（診断後に表示） -->
+        <div id="feedback" class="feedback" hidden></div>
+
+        <!-- 画面下部：生徒の操作 -->
+        <div class="action-bar">
+          <p class="action-label">原因だと思う機器を選んで、「診断する」を押そう</p>
+          <div id="choices" class="choices"></div>
+          <div class="action-buttons">
+            <button id="diagnose-btn" class="btn-main" type="button" disabled>診断する</button>
+            <button id="reveal-btn" class="btn-sub" type="button" hidden>答えを見る</button>
+            <button id="next-btn" class="btn-main" type="button" hidden>次のケースへ</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ▼ 結果画面 -->
+      <div id="view-result" hidden>
+        <h2 class="case-title">結果</h2>
+        <p id="res-summary" class="res-summary"></p>
+        <p id="res-rate" class="res-rate"></p>
+        <p class="note">※「正解数」は、最初の回答で正解できたケースの数です。</p>
+        <ul id="res-list" class="res-list"></ul>
+
+        <h3 class="sub-title">振り返り：なぜ機器を特定できましたか？</h3>
+        <p class="note">「通信できる機器」と「通信できない機器」を比べて、どう考えたかを書いてみよう。</p>
+        <textarea id="reflection" class="reflection" rows="6" placeholder="例：通信できる機器と通信できない機器を比べた。…"></textarea>
+        <p id="char-count" class="char-count"></p>
+        <button id="submit-btn" class="btn-main" type="button" disabled>提出</button>
+
+        <div id="model-box" class="model-box" hidden>
+          <h3 class="sub-title">模範例</h3>
+          <div id="model-text"></div>
+        </div>
+        <button id="restart-btn" class="btn-sub" type="button" hidden>もう一度挑戦する</button>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
